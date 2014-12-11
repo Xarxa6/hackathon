@@ -1,0 +1,321 @@
+
+Connect%20FailureRate%20daily%20
+Connect%20FailureRate%20daily%20%20By%20Data%20Center
+Connect%20FailureRate%20daily%20%20By%20MantisServer
+Connect%20FailureRate%20daily%20%20By%20Top%2025%20Partners
+Connect%20TimeOutRate%20daily%20%20By%20Top%205%20Partners
+Connect%20FailureRate%20daily%20%20By%20Browser
+Connect%20FailureRate%20daily%20%20By%20OSOS
+Connect%20FailureRate%20daily%20%20By%20OSBrowserOS
+
+webSocketConnection%20TimeOutRate%20daily%20
+webSocketConnection%20TimeOutRate%20daily%20%20By%20DataCenter
+webSocketConnection%20TimeOutRate%20daily%20%20By%20MantisServer
+webSocketConnection%20TimeOutRate%20daily%20%20By%20Top%2025%20Partners
+webSocketConnection%20TimeOutRate%20daily%20%20By%20Top%205%20Partners
+webSocketConnection%20TimeOutRate%20daily%20%20By%20Browser
+webSocketConnection%20TimeOutRate%20daily%20%20By%20OSOS
+webSocketConnection%20TimeOutRate%20daily%20%20By%20OSBrowserOS
+
+webSocketConnection%20TimeOuts%20daily%20
+webSocketConnection%20TimeOuts%20daily%20%20By%20Data%20Center
+webSocketConnection%20TimeOuts%20daily%20%20By%20MantisServer
+webSocketConnection%20TimeOuts%20daily%20%20By%20Top%2025%20Partners
+webSocketConnection%20TimeOutRate%20daily%20%20By%20Top%205%20Partners
+webSocketConnection%20TimeOuts%20daily%20%20By%20Browser
+webSocketConnection%20TimeOuts%20daily%20%20By%20OSOS
+webSocketConnection%20TimeOuts%20daily%20%20By%20OSBrowserOS
+
+webSocketConnection%20FailureRate%20daily%20
+webSocketConnection%20FailureRate%20daily%20%20By%20Data%20Center
+webSocketConnection%20FailureRate%20daily%20%20By%20MantisServer
+webSocketConnection%20FailureRate%20daily%20%20By%20Top%2025%20Partners
+webSocketConnection%20TimeOutRate%20daily%20%20By%20Top%205%20Partners
+webSocketConnection%20FailureRate%20daily%20%20By%20Browser
+webSocketConnection%20FailureRate%20daily%20%20By%20OSOS
+webSocketConnection%20FailureRate%20daily%20%20By%20OSBrowserOS
+
+webSocketConnection%20Failures%20daily%20
+webSocketConnection%20Failures%20daily%20%20By%20Data%20Center
+webSocketConnection%20Failures%20daily%20%20By%20MantisServer
+webSocketConnection%20Failures%20daily%20%20By%20Top%2025%20Partners
+webSocketConnection%20TimeOutRate%20daily%20%20By%20Top%205%20Partners
+webSocketConnection%20Failures%20daily%20%20By%20Browser
+webSocketConnection%20Failures%20daily%20%20By%20OSOS
+webSocketConnection%20Failures%20daily%20%20By%20OSBrowserOS
+
+
+Widget%20Load%20times%20daily%20bounded%20by%200%20and%206000%20ms
+
+
+Controller Widget Load times daily bounded by 0 and 6000 ms
+Controller Widget Load times daily bounded by 0 and 6000 ms By Browser
+Controller Widget Load times daily bounded by 0 and 6000 ms By OS
+Controller Widget Load times daily bounded by 0 and 6000 ms By Flashver
+Controller Widget Load times daily bounded by 0 and 6000 ms By Top 25 Partners
+Average Controller Widget Load times daily bounded by 0 and 6000 ms By Top 25 Partners
+Controller Widget Load times daily bounded by 0 and 6000 ms By Data Center
+Controller Widget Load times daily bounded by 0 and 6000 ms By Media Server
+Controller Widget Load times daily bounded by 0 and 6000 ms By Continent
+Controller Widget Load times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+Publisher Widget Load times daily bounded by 0 and 6000 ms
+Publisher Widget Load times daily bounded by 0 and 6000 ms By Browser
+Publisher Widget Load times daily bounded by 0 and 6000 ms By OS
+Publisher Widget Load times daily bounded by 0 and 6000 ms By Flashver
+Publisher Widget Load times daily bounded by 0 and 6000 ms By Top 25 Publisher Connections (Partner)
+Publisher Widget Load times daily bounded by 0 and 6000 ms By Data Center
+Publisher Widget Load times daily bounded by 0 and 6000 ms By Media Server
+Publisher Widget Load times daily bounded by 0 and 6000 ms By Continent
+Publisher Widget Load times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+Subscriber Widget Load times daily bounded by 0 and 6000 ms
+Subscriber Widget Load times daily bounded by 0 and 6000 ms By Browser
+Subscriber Widget Load times daily bounded by 0 and 6000 ms By OS
+Subscriber Widget Load times daily bounded by 0 and 6000 ms By Flashver
+Subscriber Widget Load times daily bounded by 0 and 6000 ms By Top 25 Partners
+Subscriber Widget Load times daily bounded by 0 and 6000 ms By Data Center
+Subscriber Widget Load times daily bounded by 0 and 6000 ms By Media Server
+Subscriber Widget Load times daily bounded by 0 and 6000 ms By Continent
+Subscriber Widget Load times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+
+
+
+getSessionInfo%20and%20getStreamInfo%20times%20times%20daily%20bounded%20by%200%20and%206000%20ms
+
+
+Controller getSessionInfo times daily bounded by 0 and 6000 ms
+Controller getSessionInfo times daily bounded by 0 and 6000 ms By Browser
+Controller Widget getSessionInfo times daily bounded by 0 and 6000 ms By OS
+Controller Widget getSessionInfo times daily bounded by 0 and 6000 ms By Flashver
+Controller getSessionInfo daily bounded by 0 and 6000 ms By Top 25 Partners
+Controller Widget getSessionInfo times daily bounded by 0 and 6000 ms By Data Center
+Controller Widget getSessionInfo times daily bounded by 0 and 6000 ms By Media Server
+Controller Widget getSessionInfo times daily bounded by 0 and 6000 ms By Continent
+Controller Widget getSessionInfo times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+Publisher getSessionInfo times daily bounded by 0 and 6000 ms
+Publisher getSessionInfo times daily bounded by 0 and 6000 ms By Browser
+Publisher Widget getStreamInfo times daily bounded by 0 and 6000 ms By OS
+Publisher Widget getStreamInfo times daily bounded by 0 and 6000 ms By Flashver
+Publisher getSessionInfo daily bounded by 0 and 6000 ms By Top 25 Partners
+Publisher Widget getSessionInfo times daily bounded by 0 and 6000 ms By Data Center
+Publisher Widget getSessionInfo times daily bounded by 0 and 6000 ms By Media Server
+Publisher Widget getSessionInfo times daily bounded by 0 and 6000 ms By Continent
+Publisher Widget getSessionInfo times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+Subscriber getStreamInfo times daily bounded by 0 and 6000 ms
+Subscriber getStreamInfo times daily bounded by 0 and 6000 ms By Browser
+Subscriber getStreamInfo times daily bounded by 0 and 6000 ms By OS
+Subscriber getStreamInfo times daily bounded by 0 and 6000 ms By Flashver
+Subscriber getStreamInfo daily bounded by 0 and 6000 ms By Top 25 Partners
+Subscriber Widget getSessionInfo times daily bounded by 0 and 6000 ms By Data Center
+Subscriber Widget getSessionInfo times daily bounded by 0 and 6000 ms By Media Server
+Subscriber Widget getSessionInfo times daily bounded by 0 and 6000 ms By Continent
+Subscriber Widget getSessionInfo times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+
+
+
+Net%20Connection%20Connection%20times%20times%20daily%20bounded%20by%200%20and%206000%20ms
+
+
+Controller netConnectionConnect times daily bounded by 0 and 6000 ms
+Controller netConnectionConnect times daily bounded by 0 and 6000 ms By Browser
+Controller Widget netConnectionConnect times daily bounded by 0 and 6000 ms By OS
+Controller Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Flashver
+Controller netConnectionConnect daily bounded by 0 and 6000 ms By Top 25 Partners
+Controller Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Data Center
+Controller Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Media Server
+Controller Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Continent
+Controller Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+Publisher netConnectionConnect times daily bounded by 0 and 6000 ms
+Publisher netConnectionConnect times daily bounded by 0 and 6000 ms By Browser
+Publisher Widget netConnectionConnect times daily bounded by 0 and 6000 ms By OS
+Publisher Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Flashver
+Publisher netConnectionConnect daily bounded by 0 and 6000 ms By Top 25 Partners
+Publisher Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Data Center
+Publisher Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Media Server
+Publisher Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Continent
+Publisher Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+Subscriber netConnectionConnect times daily bounded by 0 and 6000 ms
+Subscriber netConnectionConnect times daily bounded by 0 and 6000 ms By Browser
+Subscriber netConnectionConnect times daily bounded by 0 and 6000 ms By OS
+Subscriber netConnectionConnect times daily bounded by 0 and 6000 ms By Flashver
+Subscriber netConnectionConnect daily bounded by 0 and 6000 ms By Top 25 Partners
+Subscriber Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Data Center
+Subscriber Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Media Server
+Subscriber Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Continent
+Subscriber Widget netConnectionConnect times daily bounded by 0 and 6000 ms By Continent and Data Center
+
+
+
+
+
+Streamed Minutes Daily
+
+
+Published Streamed Minutes Daily
+Published Streamed Minutes By Browser Daily
+Published Streamed Minutes By OS
+Published Streamed Minutes By Flashver
+Published Streamed Minutes By Top 25 Partners
+Published Streamed Minutes By Data Center
+Published%20Minutes%20By%20Media%20Server
+Published Streamed Minutes By Continent
+Published Streamed Minutes By Continent and Data Center
+
+
+Subscribed Streamed Minutes Daily
+Subscribed Streamed Minutes By Browser
+Subscribed Streamed Minutes By OS
+Subscribed Streamed Minutes By Flashver
+Subscribed Streamed Minutes By Top 25 Partners
+Subscribed Streamed Minutes By Data Center
+Subscribed%20Minutes%20By%20Media%20Server
+Subscribed Streamed Minutes By Continent
+Subscribed Streamed Minutes By Continent and Data Center
+
+
+
+
+
+Connection%20User%20Minutes%20Daily
+Connection%20User%20Minutes%20By%20Browser%20Daily
+Connection%20User%20Minutes%20By%20OS
+Connection%20User%20Minutes%20By%20Flashver
+Connection%20User%20Minutes%20By%20Data%20Center
+Connection%20User%20Minutes%20By%20Media%20Server
+Connection User Minutes By Continent
+Connection User Minutes By Continent and Data Center
+
+
+
+
+
+
+P2P%20Pub%20Connections%20Daily
+P2P%20Pub%20Connections%20By%20Browser%20Daily
+P2P%20Pub%20Connections%20By%20OS
+P2P%20Pub%20Connections%20By%20Flashver
+P2P%20Pub%20Connections%20By%20P2PServer
+P2P%20Pub%20Connections%20By%20Top25
+
+
+
+P2P%20Sub%20Minutes%20Daily
+P2P%20Sub%20Minutes%20By%20Browser%20Daily
+P2P%20Sub%20Minutes%20By%20OS
+P2P%20Sub%20Minutes%20By%20Flashver
+P2P%20Sub%20Minutes%20By%20Data%20Center
+
+
+
+P2P%20Pub%20Minutes%20Daily
+P2P%20Pub%20Minutes%20By%20Browser%20Daily
+P2P%20Pub%20Minutes%20By%20OS
+P2P%20Pub%20Minutes%20By%20Flashver
+P2P%20Pub%20Minutes%20By%20Data%20Center
+P2P%20Pub%20Minutes%20By%20P2PServer
+
+
+
+P2P%20Timeout%20Daily
+P2P%20Timeout%20By%20P2PServer
+
+
+RTMFP%20Fallback%20Minutes
+RTMFP%20Fallback%20Minutes%20by%20P2PServer
+
+
+Qos%20Connections%20Daily
+Qos%20Connections%20By%20StreamType
+Qos%20Connections%20By%20Browser
+Qos%20Connections%20By%20OS
+Qos%20Connections%20By%20Flashver
+Qos%20Connections%20By%20MediaServerName
+Qos%20Connections%20By%20DataCenter
+
+
+
+Event%20Connections%20Daily
+Event%20Connections%20By%20Browser
+Event%20Connections%20By%20OS
+Event%20Connections%20By%20Flashver
+Event%20Connections%20By%20Continent
+
+
+Daily%20Count%20of%20Split%20Sessions
+
+Anvil%20Distinct Sessions%20Hourly
+
+
+
+
+Daily%20Chrome%20Published%20Minutes%20By%20Browser%20Version
+Daily%20Chrome%20Published%20Minutes%20By%20Browser%20Version
+Daily%20Chrome%20Connections%20By%20Browser%20Version
+
+Hourly%20getSessionInfo%20Invalid%20Session
+Hourly%20getSessionInfo%20Failure%20Attempts%20With%20Invalid%20Session
+
+
+
+Number%20of%20Create%20Session%20Calls%20Per%20Hour%20Per%20Anvil%20Server
+
+
+Daily%20Average%20Webpage%20LoadTime
+
+Weekly%20Average%20Webpage%20LoadTime
+Daily%2050 Percentile%20Webpage%20LoadTime
+Daily%2095 Percentile%20Webpage%20LoadTime
+
+Daily%20Website%20Visits%20Per%20Page
+
+Website%20Visitors%20By%20Browser%20Name
+Website%20Visitors%20By%20Browser%20Name
+
+
+WebRTC%20Allow%20Deny%20Funnel
+WebRTC%20Allow%20Deny%20Funnel
+
+Daily%20WebRTC%20GSI%20Average/Median
+Daily%20WebRTC%20PeerConnectionConnect%20Time%20Average/Median
+Daily%20WebRTC%20PeerConnectionConnect%20Time%20By%20Host%20Average/Median
+
+Top%2010%20iOS%20Devices
+Top%2010%20Android%20Devices
+Top%2010%20Android%20Devices%20Names
+
+Daily%20Chrome%20Interop%20Streamed%20WebRTC%20Minutes
+Daily%20Chrome%20Interop%20Streamed%20Flash%20Minutes
+
+
+Sum of Map Slots filled Daily
+
+Sum of Map Slots filled Hourly
+
+
+Daily Total Metrics Sent to Graphite
+
+Hourly%20Total%20Metrics%20Sent%20to%20Graphite
+
+
+
+
+
+
+
+
+
