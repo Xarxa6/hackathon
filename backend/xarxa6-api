@@ -1,23 +1,14 @@
 #!flask/bin/python
-from flask import Flask, request, abort, jsonify
-import parser
-import dal
-
-app = Flask(__name__)
-
-base_url = '/api/v1.0'
-
-def responsify(output):
-    return jsonify({ "response" : output })
-
-@app.route(base_url+"/request", methods=['POST'])
-def index():
-    if not request.json or not 'request' in request.json:
-        abort(400)
-    sentence = request.json['request']
-    parsed = parser.parse_request(sentence)
-    return responsify(parsed)
-
+import traceback
 
 if __name__ == "__main__":
-    app.run()
+    try:
+        import config
+        import log
+        import dal
+        import api
+        api.app.run()
+        log.info("Xarxa6 API has started!")
+    except:
+        print "Xarxa6 API has NOT started!"
+        traceback.print_exc()

@@ -1,2 +1,3 @@
-hackathon
-=========
+Xarxa6 Hackathon
+=================
+
