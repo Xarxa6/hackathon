@@ -2,6 +2,7 @@
 from flask import Flask, request, abort, jsonify
 import parser
 import dal
+import log
 
 app = Flask(__name__)
 
@@ -20,4 +21,5 @@ def index():
 
 
 if __name__ == "__main__":
+    log.info("Xarxa6 API has started!")
     app.run()
