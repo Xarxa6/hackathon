@@ -1,13 +1,7 @@
 import nltk
 from nltk.corpus import stopwords
 from nltk import stem
-from nltk.tag import pos_tag
-
-
-# nltk.download('punkt')
-# nltk.download('stopwords')
-# nltk.download('maxent_treebank_pos_tagger')
-# nltk.download('all-corpora')
+import re
 
 
 def parse_request(sentence):
@@ -16,39 +10,31 @@ def parse_request(sentence):
 	snowball = stem.snowball.EnglishStemmer()
 	tokens_list = [snowball.stem(x.lower()) for x in tokens if x not in stopwords.words('english') and len(x) > 1]
 	# organization_list = getPartner(sentence)
-
-	dimension_list = getDimension(sentence)
+	dimension_list = getDimension(tokens_list)
 	tags['dimension'] = dimension_list
 	for item in dimension_list:
 		tokens_list.remove(item)
 	tags['metric']=tokens_list
-	print tags
 	return tags
 
+def getDimension(tags):
+	dimension_list = []
+	single_daytime = "januari|februari|march|april|may|june|juli|august|septemb|octob|novemb|decemb|yesterday|today"
+	pair_daytime = "month|week|year|day"
+	i = 0
+	for i in range(len(tags)):
+		match_single = re.search(single_daytime, tags[i])
+		if match_single:
+			dimension_list.append(tags[i])
+		match_pair = re.search(pair_daytime, tags[i])
+		if match_pair:
+			dimension_list.append(tags[i])
+			try:
+				dimension_list.append(tags[i-1])
+			except KeyError:
+				pass
+	return dimension_list
 
-def getPartner(text):
-	organization_list = []
-	for sent in nltk.sent_tokenize(text):
-		for chunk in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent))):
-			if hasattr(chunk, 'node'):
-				if chunk.node == "ORGANIZATION":
-					organization = ' '.join(c[0] for c in chunk.leaves())
-					organization_list.append(organization)
-	print organization_list
-
-
-def getDimension(text):
-	date_list = []
-	for sent in nltk.sent_tokenize(text):
-		for chunk in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(sent))):
-			print chunk
-			if hasattr(chunk, 'node'):
-				if chunk.node == "DATE":
-					date = ' '.join(c[0] for c in chunk.leaves())
-					date_list.append(date)
-	return date_list
-
-text = "what is the Minerva minutes of yesterday"
-parse_request(text)
+			
 
 
