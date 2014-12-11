@@ -1,10 +1,10 @@
-#import nltk
+import nltk
+nltk.download('punkt')
 
 def parse_request(sentence):
-    try:
-        parsed = sentence.split(" ")
-        print "Parsing sentence..."
-        print parsed
-    except:
-        print "There was an error when parsing!"
-    return parsed
+	try:
+		tokens = nltk.word_tokenize(sentence)
+		print "NLTK Parsing sentence..."
+	except:
+		print "There was an error when NLTK parsing!"
+	return tokens
