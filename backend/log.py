@@ -1,10 +1,30 @@
 import logging
+from config import logConfig
+import traceback
 
-# logging.basicConfig(format='[%(levelname)s] %(message)s', filename='xarxa6-api.log', level=logging.DEBUG)
+FORMAT = '[%(levelname)s][%(asctime)s] %(message)s'
+OUTPUT = logConfig['file']
+LEVEL = logConfig['level']
 
-logging.basicConfig(format='[%(levelname)s] %(message)s', level=logging.DEBUG)
+if OUTPUT == '':
+    logging.basicConfig(format=FORMAT, level=LEVEL.upper())
+else:
+    logging.basicConfig(format=FORMAT, level=LEVEL.upper(), filename = OUTPUT)
+
 
 def critical(msg):
     logging.critical(msg)
+    traceback.print_exc()
 
-#TODO FINISH IMPLEMENTING BASIC LOG MODULE
+def error(msg):
+    logging.error(msg)
+    traceback.print_exc()
+
+def info(msg):
+    logging.info(msg)
+
+def debug(msg):
+    logging.debug(msg)
+
+def warn(msg):
+    logging.warning(msg)

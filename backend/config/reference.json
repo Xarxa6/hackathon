@@ -1,0 +1,13 @@
+{
+    "analytics-db" : {
+        "host" : "localhost",
+        "name" : "xarxa6",
+        "user" : "api",
+        "pass" : ""
+    },
+    "log" : {
+        "level" : "DEBUG",
+        "file" : ""
+    }
+}
+
