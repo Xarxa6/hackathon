@@ -1,0 +1,1 @@
+copy Xarxa6Analyses from '/home/mike/OpenTok/analysis/Xarxa6/Xarxa6Analysis.csv' delimiter as '|';
