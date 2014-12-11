@@ -1,6 +1,7 @@
 #!flask/bin/python
 from flask import Flask, request, abort, jsonify
 import parser
+import dal
 
 
 app = Flask(__name__)
