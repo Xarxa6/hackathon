@@ -7,7 +7,7 @@ if __name__ == "__main__":
         import log
         import dal
         import api
-        api.app.run()
+        api.app.run(host = config.bootConfig['host'], port = config.bootConfig['port'])
         log.info("Xarxa6 API has started!")
     except:
         print "Xarxa6 API has NOT started!"
