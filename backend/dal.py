@@ -9,7 +9,28 @@ USER = dbConfig['user']
 PASS = dbConfig['pass']
 
 def match_analyses_sql(tags):
-    return """select * from available_analysis;"""
+    formatted_tags = str(tags).replace("'", '"')
+    q="""
+        SELECT anly.payload, anly.status
+        FROM (
+            SELECT at.analysis_id, count(*) AS cnt
+            FROM (
+                -- create table from analysis table with one tag per row
+                SELECT json_array_elements(tags) AS tag, analysis_id FROM analyses
+                ) at
+            -- create table from input with one tag per row and join
+            INNER JOIN (SELECT json_array_elements('{tags}') AS tag
+            ) it
+            ON ((at.tag->>'measure' = it.tag->>'measure') or (at.tag->>'dimension' = it.tag->>'dimension'))
+            GROUP BY at.analysis_id
+        ) matched_tags
+        -- join back to analysis jobs table to get the payload and status (cannot group by payload as it is JSON)
+        INNER JOIN analyses anly ON anly.analysis_id = matched_tags.analysis_id
+        ORDER BY matched_tags.cnt DESC
+        LIMIT 100;
+    """
+    query = q.format(tags=formatted_tags)
+    return query
 
 def insert_new_analysis_sql(tags, sentence):
     return """insert * from available_analysis;"""

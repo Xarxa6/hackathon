@@ -3,19 +3,28 @@ from nltk.corpus import stopwords
 from nltk import stem
 import re
 
+nltk.download('stopwords')
 
 def parse_request(sentence):
-	tags = {}
 	tokens = nltk.word_tokenize(sentence)
 	snowball = stem.snowball.EnglishStemmer()
 	tokens_list = [snowball.stem(x.lower()) for x in tokens if x not in stopwords.words('english') and len(x) > 1]
 	# organization_list = getPartner(sentence)
 	dimension_list = getDimension(tokens_list)
-	tags['dimension'] = dimension_list
 	for item in dimension_list:
 		tokens_list.remove(item)
-	tags['metric']=tokens_list
-	return tags
+	result_ls = []
+	for item in dimension_list:
+		tmp_dict = {}
+		tmp_dict["dimension"] = str(item)
+		result_ls.append(tmp_dict)
+	for item in tokens_list:
+		tmp_dict = {}
+		tmp_dict["measure"] = str(item)
+		result_ls.append(tmp_dict)
+	return result_ls
+
+
 
 def getDimension(tags):
 	dimension_list = []
@@ -34,5 +43,4 @@ def getDimension(tags):
 			except KeyError:
 				pass
 	return dimension_list
-
 
