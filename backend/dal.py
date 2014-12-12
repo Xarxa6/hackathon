@@ -34,13 +34,14 @@ def match_analyses_sql(tags):
 
 def insert_new_analysis_sql(tags, sentence):
     formatted_tags = str(tags).replace("'", '"')
+    print tags
+    print sentence
     q="""
         INSERT INTO analyses 
-        VALUES (DEFAULT, '{tags}', '{"query":"{sentence}"}', 'queued');
+        VALUES (DEFAULT, '{tags}', '{{"query":"{sentence}"}}', 'queued');
     """
     query = q.format(tags=formatted_tags, sentence=sentence)
-    print query
-    return """insert * from available_analysis;"""
+    return query
 
 #Set up connection
 try:
