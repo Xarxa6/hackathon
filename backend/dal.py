@@ -33,7 +33,15 @@ def match_analyses_sql(tags):
     return query
 
 def insert_new_analysis_sql(tags, sentence):
-    return """insert * from available_analysis;"""
+    formatted_tags = str(tags).replace("'", '"')
+    print tags
+    print sentence
+    q="""
+        INSERT INTO analyses 
+        VALUES (DEFAULT, '{tags}', '{{"query":"{sentence}"}}', 'queued');
+    """
+    query = q.format(tags=formatted_tags, sentence=sentence)
+    return query
 
 #Set up connection
 try:
@@ -59,7 +67,7 @@ def escapeForSql(value):
     else:
         return value
 
-def queue_analysis(tags, sentence):
+def queue_analysis(sentence, tags):
     try:
         db().execute(insert_new_analysis_sql(tags,sentence))
         log.info("Successfully appended new analysis to queue")
