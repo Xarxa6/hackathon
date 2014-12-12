@@ -15,6 +15,14 @@ class Analysis(object):
     def __getitem__(self, item):
         return self.__dict__[item]
 
+    def toDict(self):
+        return {
+            'analysis_id' : self.id,
+            'tags' : self.tags,
+            'payload' : self.payload,
+            'status' : self.status
+        }
+
 
 
 class DataSource(object):
