@@ -114,7 +114,22 @@ def update_analysis(uid,params):
 
 
 def new_analysis(source_id,dimensions,metric,query):
-    uid = None
+    source_id = source_id
+    dimensions = dimensions
+    measures = metric
+    sentence = query
+    tags = []
+    for item in dimensions:
+        tags.append({"dimension": item})
+    tags.append({"measure": metric})
+
+    formatted_tags = str(tags).replace("'", '"')
+    q="""
+        INSERT INTO analyses 
+        VALUES (DEFAULT, '{tags}', '{{"source_id":"{source_id}","query":"{sentence}"}}', 'available');
+    """
+    sql = q.format(tags=formatted_tags, source_id=source_id, sentence=sentence)
+    uid = db().execute(sql)
     return protocol.success("Successfully created analysis with id "+str(uid))
 
 def get_sources():

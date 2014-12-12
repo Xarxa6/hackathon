@@ -1,9 +1,12 @@
 import nltk
 from nltk.corpus import stopwords
 from nltk import stem
+from nltk.tag import pos_tag
 import re
 
 nltk.download('stopwords')
+nltk.download('maxent_treebank_pos_tagger')
+
 
 def parse_request(sentence):
 	tokens = nltk.word_tokenize(sentence)
@@ -20,30 +23,32 @@ def parse_request(sentence):
 					pass
 		except IndexError:
 			pass
-
 	snowball = stem.snowball.EnglishStemmer()
 	tokens_list = [snowball.stem(x.lower()) for x in tokens if x not in stopwords.words('english') and len(x) > 1]
-	# organization_list = getPartner(sentence)
 	dimension_list = getDimension(tokens_list)
+	
 	for item in dimension_list:
 		tokens_list.remove(item)
 	result_ls = []
+
 	for item in dimension_list:
 		tmp_dict = {}
 		tmp_dict["dimension"] = str(item)
 		result_ls.append(tmp_dict)
-	for item in tokens_list:
-		tmp_dict = {}
-		tmp_dict["measure"] = str(item)
-		result_ls.append(tmp_dict)
-	for item in email_list:
-		tmp_dict = {}
-		tmp_dict["measure"] = str(item)
-		result_ls.append(tmp_dict)
-	print result_ls
+	# for item in tokens_list:
+	# 	tmp_dict = {}
+	# 	tmp_dict["measure"] = str(item)
+	# 	result_ls.append(tmp_dict)
+	# for item in email_list:
+	# 	tmp_dict = {}
+	# 	tmp_dict["measure"] = str(item)
+	# 	result_ls.append(tmp_dict)
+
+	## force to set up only one measure 
+	tmp_dict = {}
+	tmp_dict["measure"] = getFirstNoun(sentence)
+	result_ls.append(tmp_dict)
 	return result_ls
-
-
 
 def getDimension(tags):
 	dimension_list = []
@@ -62,3 +67,8 @@ def getDimension(tags):
 			except KeyError:
 				pass
 	return dimension_list
+
+def getFirstNoun(sentence):
+	tagged_sent = pos_tag(sentence.split())
+	propernouns = [word for word,pos in tagged_sent if pos == 'NN' or pos == 'NNP' or pos=='NNS']
+	return propernouns[0]
