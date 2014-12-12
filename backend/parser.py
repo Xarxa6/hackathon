@@ -20,30 +20,31 @@ def parse_request(sentence):
 					pass
 		except IndexError:
 			pass
-
 	snowball = stem.snowball.EnglishStemmer()
 	tokens_list = [snowball.stem(x.lower()) for x in tokens if x not in stopwords.words('english') and len(x) > 1]
-	# organization_list = getPartner(sentence)
 	dimension_list = getDimension(tokens_list)
+	
 	for item in dimension_list:
 		tokens_list.remove(item)
 	result_ls = []
+
 	for item in dimension_list:
 		tmp_dict = {}
 		tmp_dict["dimension"] = str(item)
 		result_ls.append(tmp_dict)
-	for item in tokens_list:
-		tmp_dict = {}
-		tmp_dict["measure"] = str(item)
-		result_ls.append(tmp_dict)
-	for item in email_list:
-		tmp_dict = {}
-		tmp_dict["measure"] = str(item)
-		result_ls.append(tmp_dict)
-	print result_ls
+	# for item in tokens_list:
+	# 	tmp_dict = {}
+	# 	tmp_dict["measure"] = str(item)
+	# 	result_ls.append(tmp_dict)
+	## force to set up only one measure 
+	tmp_dict={}
+	tmp_dict["measure"] = str(tokens_list[0])
+	result_ls.append(tmp_dict)
+	# for item in email_list:
+	# 	tmp_dict = {}
+	# 	tmp_dict["measure"] = str(item)
+	# 	result_ls.append(tmp_dict)
 	return result_ls
-
-
 
 def getDimension(tags):
 	dimension_list = []
@@ -62,3 +63,6 @@ def getDimension(tags):
 			except KeyError:
 				pass
 	return dimension_list
+
+text = 'can you send me the new account created last month'
+print parse_request(text)

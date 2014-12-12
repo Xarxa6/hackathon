@@ -1,7 +1,8 @@
-from flask import Flask, request, abort, jsonify, make_response, render_template
+from flask import Flask, request, abort, jsonify, make_response
 import parser
 import log
 import dal
+import log
 
 app = Flask(__name__)
 
@@ -27,13 +28,9 @@ def missing(error):
     return make_response(jsonify({'error': 'Something is missing'}), 400)
 
 @app.errorhandler(500)
-def internal_server_error(error):
+def not_found(error):
     return make_response(jsonify({'error': 'Oops! Something went wrong!'}), 500)
 
-
-@app.route("/")
-def index():
-    return render_template('index.html')
 
 @app.route(base_url+"/analysis", methods=['POST','GET'])
 def analyses():
