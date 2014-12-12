@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, jsonify, make_response
+from flask import Flask, request, abort, jsonify, make_response, render_template
 import parser
 import dal
 
@@ -29,6 +29,10 @@ def missing(error):
 def internal_server_error(error):
     return make_response(jsonify({'error': 'Oops! Something went wrong!'}), 500)
 
+
+@app.route("/")
+def index():
+    return render_template('index.html')
 
 @app.route(base_url+"/analysis", methods=['POST','GET'])
 def analyses():
