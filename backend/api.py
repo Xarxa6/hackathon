@@ -1,11 +1,16 @@
 from flask import Flask, request, abort, jsonify, make_response
 import parser
+from flask import render_template
 import log
 import dal
 
 app = Flask(__name__)
 
 base_url = '/api/v1.0'
+
+@app.route('/')
+def hello(name=None):
+    return render_template('index.html')
 
 #adhered to utils.protocol
 def responsify(output):

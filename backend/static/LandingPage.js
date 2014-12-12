@@ -2,8 +2,10 @@
  * Created by eric on 12/10/14.
  */
 
-var landingPage = (function () {
 
+
+
+var landingPage = (function () {
     function highlightCode (code){
         var returnString = "";
 
@@ -37,7 +39,7 @@ var landingPage = (function () {
         textVal += "</button>";
 
 
-        $("#hello").html(textVal);
+        $("#queryresults").html(textVal);
 
     }
 
@@ -45,14 +47,16 @@ var landingPage = (function () {
         var queryString = $("#searchQuery").val();
 
         var ajaxSettings = {
-            async     :  true,
-            dataType  : "json",
-            data      :  {"testing123": queryString },
-            type      :  "GET"};
+            async       :  true,
+            dataType    : "application/json",
+            contentType : "json",
+            data        :  {"request": queryString },
+            type        :  "GET"};
 
-        $.ajax("/ajax", ajaxSettings)
+        $.ajax("/api/v1.0/analysis", ajaxSettings)
             .done(function (collection) {
                 var settings = collection;
+                console.log(collection);
                 drawTable(collection);
             });
     };
@@ -63,12 +67,13 @@ var landingPage = (function () {
         var ajaxSettings = {
             async     :  true,
             dataType  : "json",
-            data      :  {"testing123": queryString },
+            data      :  {"request": queryString },
             type      :  "POST"};
 
-        $.ajax("/ajax", ajaxSettings)
+        $.ajax("/api/v1.0/analysis", ajaxSettings)
             .done(function (collection) {
                 var settings = collection;
+                console.log(collection);
                 drawTable(collection);
             });
     };
