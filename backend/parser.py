@@ -62,5 +62,3 @@ def getDimension(tags):
 			except KeyError:
 				pass
 	return dimension_list
-
-parse_request("What is the number of users in tuGo?")

@@ -14,3 +14,10 @@ def success(msg, result = None):
     'message' : msg,
     'result' : result
      }
+
+def warning(msg):
+    log.warn(msg)
+    return {
+        'status' : 'warn',
+        'message' : msg
+    }

@@ -28,3 +28,6 @@ def debug(msg):
 
 def warn(msg):
     logging.warning(msg)
+
+def warning(msg):
+    logging.warning(msg)

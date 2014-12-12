@@ -22,7 +22,7 @@ class DataSource(object):
     def __init__(self,t):
         if type(t) != tuple:
             raise AttributeError("Failed to init DataSource, parameter is not tuple")
-        self.id = t[0]
+        self.sid = t[0]
         self.type = t[1]
         self.host = t[2]
         self.port = t[3]
@@ -34,4 +34,14 @@ class DataSource(object):
 
     def __getitem__(self, item):
         return self.__dict__[item]
+
+    def toDict(self):
+        return {
+            'sid' : self.sid,
+            'type' : self.type,
+            'host' : self.host,
+            'port' : self.port,
+            'username' : self.username,
+            'password' : self.password,
+        }
 
