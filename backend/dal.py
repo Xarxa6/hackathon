@@ -71,7 +71,7 @@ def queue_analysis(sentence, tags):
 
 def query_analyses(tags):
     try:
-        if type(tags) is not str:
+        if type(tags) is not list:
             raise AssertionError("Tags must be a list!")
         cursor = db()
         cursor.execute(match_analyses_sql(tags))

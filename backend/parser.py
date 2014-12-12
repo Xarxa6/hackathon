@@ -40,6 +40,7 @@ def parse_request(sentence):
 		tmp_dict = {}
 		tmp_dict["measure"] = str(item)
 		result_ls.append(tmp_dict)
+	print result_ls
 	return result_ls
 
 
