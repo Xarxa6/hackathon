@@ -26,7 +26,7 @@ def parse_request(sentence):
 	snowball = stem.snowball.EnglishStemmer()
 	tokens_list = [snowball.stem(x.lower()) for x in tokens if x not in stopwords.words('english') and len(x) > 1]
 	dimension_list = getDimension(tokens_list)
-	
+
 	for item in dimension_list:
 		tokens_list.remove(item)
 	result_ls = []
@@ -44,7 +44,7 @@ def parse_request(sentence):
 	# 	tmp_dict["measure"] = str(item)
 	# 	result_ls.append(tmp_dict)
 
-	## force to set up only one measure 
+	## force to set up only one measure
 	tmp_dict = {}
 	tmp_dict["measure"] = getFirstNoun(sentence)
 	result_ls.append(tmp_dict)

@@ -1,9 +1,7 @@
 from flask import Flask, request, abort, jsonify, make_response
 import parser
 import log
-import json
 import dal
-import log
 
 app = Flask(__name__)
 
@@ -31,7 +29,7 @@ def missing(error):
     return make_response(jsonify({'error': 'Something is missing'}), 400)
 
 @app.errorhandler(500)
-def not_found(error):
+def internal_server_error(error):
     return make_response(jsonify({'error': 'Oops! Something went wrong!'}), 500)
 
 
