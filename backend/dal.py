@@ -33,6 +33,13 @@ def match_analyses_sql(tags):
     return query
 
 def insert_new_analysis_sql(tags, sentence):
+    formatted_tags = str(tags).replace("'", '"')
+    q="""
+        INSERT INTO analyses 
+        VALUES (DEFAULT, '{tags}', '{"query":"{sentence}"}', 'queued');
+    """
+    query = q.format(tags=formatted_tags, sentence=sentence)
+    print query
     return """insert * from available_analysis;"""
 
 #Set up connection
@@ -54,7 +61,7 @@ def db():
     return db
 
 
-def queue_analysis(tags, sentence):
+def queue_analysis(sentence, tags):
     try:
         db().execute(insert_new_analysis_sql(tags,sentence))
         log.info("Successfully appended new analysis to queue")
@@ -64,7 +71,7 @@ def queue_analysis(tags, sentence):
 
 def query_analyses(tags):
     try:
-        if type(tags) is not list:
+        if type(tags) is not str:
             raise AssertionError("Tags must be a list!")
         cursor = db()
         cursor.execute(match_analyses_sql(tags))
