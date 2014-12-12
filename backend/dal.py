@@ -2,6 +2,7 @@ import psycopg2
 import log
 from config import dbConfig
 from utils import protocol
+import model
 
 HOST = dbConfig['host']
 NAME = dbConfig['name']
@@ -11,7 +12,7 @@ PASS = dbConfig['pass']
 def match_analyses_sql(tags):
     formatted_tags = str(tags).replace("'", '"')
     q="""
-        SELECT anly.payload, anly.status
+        SELECT anly.analysis_id, anly.tags, anly.payload, anly.status
         FROM (
             SELECT at.analysis_id, count(*) AS cnt
             FROM (
@@ -37,7 +38,7 @@ def insert_new_analysis_sql(tags, sentence):
     print tags
     print sentence
     q="""
-        INSERT INTO analyses 
+        INSERT INTO analyses
         VALUES (DEFAULT, '{tags}', '{{"query":"{sentence}"}}', 'queued');
     """
     query = q.format(tags=formatted_tags, sentence=sentence)
@@ -81,8 +82,11 @@ def query_analyses(tags):
             raise AssertionError("Tags must be a list!")
         cursor = db()
         cursor.execute(match_analyses_sql(tags))
-        msg = "Succesfylly extracted analyses"
-        return protocol.success(msg,cursor.fetchall())
+        msg = "Succesfully extracted analyses"
+        i = cursor.fetchall()
+        print i
+        items = [model.Analysis(proto) for proto in i]
+        return protocol.success(msg,items)
     except Exception as e:
         return protocol.error(e)
 
@@ -94,12 +98,11 @@ def new_analysis(source_id,dimensions,metric,query):
     uid = None
     return protocol.success("Successfully created analysis with id "+str(uid))
 
-#TODO continue here
 def get_sources():
     sql = "SELECT * from data_sources;"
     cursor = db()
     cursor.execute(sql)
-    items = cursor.fetchall()
+    items = [model.DataSource(proto) for proto in cursor.fetchall()]
     return protocol.success("Successfully fetched data sources",items)
 
 def create_source(host,port,user,password,type_of):

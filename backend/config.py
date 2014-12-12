@@ -11,7 +11,7 @@ def loadConfig(f):
         dbConfig = configuration['analytics-db']
         logConfig = configuration['log']
         bootConfig = configuration['server']
-    return dbConfig, logConfig, bootConfig
+        return dbConfig, logConfig, bootConfig
 
 try:
     dbConfig, logConfig, bootConfig = loadConfig(config_file)
