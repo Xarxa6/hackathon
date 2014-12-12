@@ -1,9 +1,12 @@
 import nltk
 from nltk.corpus import stopwords
 from nltk import stem
+from nltk.tag import pos_tag
 import re
 
 nltk.download('stopwords')
+nltk.download('maxent_treebank_pos_tagger')
+
 
 def parse_request(sentence):
 	tokens = nltk.word_tokenize(sentence)
@@ -36,14 +39,15 @@ def parse_request(sentence):
 	# 	tmp_dict = {}
 	# 	tmp_dict["measure"] = str(item)
 	# 	result_ls.append(tmp_dict)
-	## force to set up only one measure 
-	tmp_dict={}
-	tmp_dict["measure"] = str(tokens_list[0])
-	result_ls.append(tmp_dict)
 	# for item in email_list:
 	# 	tmp_dict = {}
 	# 	tmp_dict["measure"] = str(item)
 	# 	result_ls.append(tmp_dict)
+
+	## force to set up only one measure 
+	tmp_dict = {}
+	tmp_dict["measure"] = getFirstNoun(sentence)
+	result_ls.append(tmp_dict)
 	return result_ls
 
 def getDimension(tags):
@@ -64,5 +68,7 @@ def getDimension(tags):
 				pass
 	return dimension_list
 
-text = 'can you send me the new account created last month'
-print parse_request(text)
+def getFirstNoun(sentence):
+	tagged_sent = pos_tag(sentence.split())
+	propernouns = [word for word,pos in tagged_sent if pos == 'NN' or pos == 'NNP' or pos=='NNS']
+	return propernouns[0]
