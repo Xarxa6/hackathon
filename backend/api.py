@@ -1,5 +1,6 @@
 from flask import Flask, request, abort, jsonify, make_response, render_template
 import parser
+import log
 import dal
 
 app = Flask(__name__)
@@ -72,7 +73,8 @@ def sources():
             source = request.json['source']
             result = dal.update_source(source['id'],source)
             return responsify(result)
-        except:
+        except Exception as e:
+            log.error(e)
             abort(400)
 
     if request.method == 'POST':

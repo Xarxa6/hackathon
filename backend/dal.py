@@ -56,11 +56,16 @@ try:
 except:
     log.critical("Unable to connect to the DB")
 
-#cursor builder
+#HELPERS
 def db():
     db = conn.cursor()
     return db
 
+def escapeForSql(value):
+    if type(value) == str:
+        return "\'" + value.strip() + "\'"
+    else:
+        return value
 
 def queue_analysis(sentence, tags):
     try:
@@ -81,25 +86,46 @@ def query_analyses(tags):
     except Exception as e:
         return protocol.error(e)
 
-def update_analysis(uid):
+def update_analysis(uid,obj):
+
     return protocol.success("Successfully updated analysis with id "+str(uid))
 
 def new_analysis(source_id,dimensions,metric,query):
     uid = None
     return protocol.success("Successfully created analysis with id "+str(uid))
 
+#TODO continue here
 def get_sources():
-    return protocol.success("Successfully fetched data sources")
+    sql = "SELECT * from data_sources;"
+    cursor = db()
+    cursor.execute(sql)
+    items = cursor.fetchall()
+    return protocol.success("Successfully fetched data sources",items)
 
 def create_source(host,port,user,password,type_of):
-    uid = None
+    sql = "INSERT INTO data_sources VALUES (DEFAULT,"+host+","+port+","+user+","+password+") "
+    uid = db().execute(sql)
     return protocol.success("Successfully create new Source with id "+str(uid))
 
-def update_source(uid,fields):
-    return protocol.success("Successfully updated source with id " + str(uid))
+def update_source(uid,params):
+    try:
+        _sql = ""
+        for key in params:
+            _sql = _sql + str(key) + " = " + escapeForSql(params[key]) + ","
+        sql = "UPDATE data_sources SET " + _sql[:-1] + " WHERE sid = " + str(uid) +";"
+        db().execute(sql)
+        return protocol.success("Successfully updated source with id " + str(uid))
+    except Exception as e:
+        return protocol.error(e)
 
 def delete_source(uid):
-    return protocol.success("Succesfully deleted data source with id " +str(uid))
+    try:
+        sql = "DELETE from data_sources where sid =" +str(uid)+";"
+        db().execute(sql)
+        return protocol.success("Succesfully deleted data source with id " +str(uid)
+            )
+    except Exception as e:
+        return protocol.error(e)
 
 def run_query(query_id):
     return protocol.success("Succesfully executed query with id "+str(query_id))
