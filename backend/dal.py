@@ -104,7 +104,7 @@ def query_analyses(tags):
         msg = "Succesfully extracted analyses"
         i = cursor.fetchall()
         print i
-        items = [model.Analysis(proto) for proto in i]
+        items = [model.Analysis(proto).toDict() for proto in i]
         return protocol.success(msg,items)
     except Exception as e:
         return protocol.error(e)

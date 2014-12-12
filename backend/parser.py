@@ -4,8 +4,8 @@ from nltk import stem
 from nltk.tag import pos_tag
 import re
 
-nltk.download('stopwords')
-nltk.download('maxent_treebank_pos_tagger')
+# nltk.download('stopwords')
+# nltk.download('maxent_treebank_pos_tagger')
 
 
 def parse_request(sentence):
@@ -46,7 +46,7 @@ def parse_request(sentence):
 
 	## force to set up only one measure
 	tmp_dict = {}
-	tmp_dict["measure"] = getFirstNoun(sentence)
+	tmp_dict["measure"] = str(getFirstNoun(sentence))
 	result_ls.append(tmp_dict)
 	return result_ls
 
@@ -72,3 +72,6 @@ def getFirstNoun(sentence):
 	tagged_sent = pos_tag(sentence.split())
 	propernouns = [word for word,pos in tagged_sent if pos == 'NN' or pos == 'NNP' or pos=='NNS']
 	return propernouns[0]
+
+text = "uptime last month"
+parse_request(text)
