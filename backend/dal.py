@@ -9,6 +9,24 @@ NAME = dbConfig['name'].strip()
 USER = dbConfig['user'].strip()
 PASS = dbConfig['pass'].strip()
 
+def setup_conn(host,name,user,password):
+    if name != None:
+        conn_string = "host='{}' dbname='{}' user='{}' password='{}'".format(host,name,user,password)
+    else:
+        conn_string = "host='{}' user='{}' password='{}'".format(host,user,password)
+    conn = psycopg2.connect(conn_string)
+    conn.autocommit = True
+    log.info("Succesfully connected to DB {}/{} with user {}".format(host,str(name),user))
+    return conn
+
+#Set up analytics db connection
+try:
+    conn = setup_conn(HOST,NAME,USER,PASS)
+except:
+    log.critical("Unable to connect to the DB")
+
+
+#QUERY BUILDERS
 def match_analyses_sql(tags):
     formatted_tags = str(tags).replace("'", '"')
     q="""
@@ -44,26 +62,11 @@ def insert_new_analysis_sql(tags, sentence):
     query = q.format(tags=formatted_tags, sentence=sentence)
     return query
 
-#Set up connection
-try:
-    conn = psycopg2.connect(
-        "host='" + HOST + "' \
-        dbname='" + NAME + "' \
-        user='" + USER + "' \
-        sslmode='prefer' \
-        password='" + PASS + "'")
-
-    conn.autocommit = True
-
-    log.info("Succesfully connected to DB "+ HOST +"/" + NAME + \
-        " with user " + USER)
-except:
-    log.critical("Unable to connect to the DB")
-
 #HELPERS
-def db():
-    db = conn.cursor()
-    return db
+
+#Cursor builder. By default get global connection to analytics db
+def db(c = conn):
+    return c.cursor()
 
 def query(sql):
     log.debug("Executing query in host:{} -> {}".format(HOST,sql))
@@ -75,6 +78,14 @@ def escapeForSql(value):
     else:
         log.debug("Not escaping value with type " + str(type(value)))
         return str(value)
+
+
+#QUERIES
+def select_analysis_by_id(analysis_id):
+    sql = '''SELECT * from analyses where analysis_id = {}'''.format(analysis_id)
+    cursor = db()
+    cursor.execute(sql)
+    return model.Analysis(cursor.fetchone())
 
 def queue_analysis(sentence, tags):
     try:
@@ -125,12 +136,18 @@ def new_analysis(source_id,dimensions,metric,query):
 
     formatted_tags = str(tags).replace("'", '"')
     q="""
-        INSERT INTO analyses 
+        INSERT INTO analyses
         VALUES (DEFAULT, '{tags}', '{{"source_id":"{source_id}","query":"{sentence}"}}', 'available');
     """
     sql = q.format(tags=formatted_tags, source_id=source_id, sentence=sentence)
     uid = db().execute(sql)
     return protocol.success("Successfully created analysis with id "+str(uid))
+
+def select_source_by_id(sid):
+    sql = '''SELECT * from data_sources where sid = {}'''.format(sid)
+    cursor = db()
+    cursor.execute(sql)
+    return model.DataSource(cursor.fetchone())
 
 def get_sources():
     try:
@@ -183,9 +200,29 @@ def delete_source(uid):
     except Exception as e:
         return protocol.error(e)
 
-def run_query(query_id):
-    #return protocol.success("Succesfully executed query with id "+str(query_id))
-    return protocol.warning("Not implemented!")
+
+def run_query(analysis_id):
+    try:
+        analysis = select_analysis_by_id(analysis_id)
+        query = analysis.payload['query']
+        source = select_source_by_id(analysis.payload['source_id'])
+
+        if source.type.lower() == 'psql':
+            conn = setup_conn(source.host,None,source.username,source.password)
+            cursor = db(conn)
+            cursor.execute(query)
+            items = cursor.fetchall()
+            return protocol.success("Succesfully executed query with id "+str(analysis_id),items)
+
+        elif source.type.lower() == 'mysql':
+            protocol.warning("Not implemented!")
+
+        elif source.type.lower() == 'hive':
+            protocol.warning("Not implemented!")
+
+    except Exception as e:
+        return protocol.error(e)
+
 
 
 
