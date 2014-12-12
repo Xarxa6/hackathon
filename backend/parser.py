@@ -35,6 +35,4 @@ def getDimension(tags):
 				pass
 	return dimension_list
 
-			
-
 

@@ -10,15 +10,33 @@ def loadConfig(f):
         configuration = json.load(opened)
         dbConfig = configuration['analytics-db']
         logConfig = configuration['log']
-    return dbConfig, logConfig
+        bootConfig = configuration['server']
+    return dbConfig, logConfig, bootConfig
 
 try:
-    dbConfig, logConfig = loadConfig(config_file)
+    dbConfig, logConfig, bootConfig = loadConfig(config_file)
 except:
     print "[WARNING] Could not load application.json. Importing defaults..."
     print traceback.print_exc()
     try:
-        dbConfig, logConfig = loadConfig(defaults)
+        dbConfig, logConfig, bootConfig = loadConfig(defaults)
     except:
-        print "[CRITICAL] COULD NOT LOAD ANY CONFIG!"
+        print "[ERROR] COULD NOT LOAD ANY CONFIG!"
         print traceback.print_exc()
+
+        dbConfig = {
+            "host" : "localhost",
+            "name" : "xarxa6",
+            "user" : "api",
+            "pass" : ""
+        }
+
+        logConfig = {
+            "level" : "DEBUG",
+            "file" : ""
+        }
+
+        bootConfig = {
+            "host" : "127.0.0.1",
+            "port" : 5000
+        }
