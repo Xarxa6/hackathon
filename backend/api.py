@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, jsonify, make_response
+from flask import Flask, request, abort, jsonify, make_response, render_template
 import parser
 from flask import render_template
 import log
@@ -68,8 +68,13 @@ def query():
     result = dal.run_query(query)
     return responsify(result)
 
-
 #ADMIN CONSOLE
+
+@app.route("/admin")
+def admin():
+    return render_template('admin.html', title='Admin Console')
+
+#ADMIN CONSOLE API
 
 @app.route(base_url+"/admin/source", methods=['POST','PUT', 'DELETE', 'GET'])
 def sources():

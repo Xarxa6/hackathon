@@ -5,7 +5,7 @@ Setup virtual environment
 ------------------------
 Open project root folder and do
 - `cd ./backend`
-- `virtualenv flask`.
+- `virtualenv flask`
 
 Then use the `pip` in the virtual environment to install dependencies:
 - `flask/bin/pip install nltk`
