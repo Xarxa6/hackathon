@@ -1,6 +1,8 @@
 Xarxa6 Hackathon
 =================
 
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Xarxa6/hackathon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Setup virtual environment
 ------------------------
 Open project root folder and do
