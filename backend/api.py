@@ -1,18 +1,11 @@
 from flask import Flask, request, abort, jsonify, make_response, render_template
 import parser
-from flask import render_template
 import log
 import dal
 
 app = Flask(__name__)
 
-base_url = '/api/v1.0'
-
-@app.route('/')
-def hello(name=None):
-    return render_template('index.html')
-
-#adhered to utils.protocol
+#Helper -> follows utils.protocol
 def responsify(output):
     status = output['status']
     if status == 'error':
@@ -25,6 +18,7 @@ def responsify(output):
         else:
             return make_response(jsonify({'content' : 'ok'}), 200)
 
+# Custom Error handlers
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
@@ -37,8 +31,24 @@ def missing(error):
 def internal_server_error(error):
     return make_response(jsonify({'error': 'Oops! Something went wrong!'}), 500)
 
+# Templates
+@app.route('/')
+def wrap():
+    return render_template('wrap_bootstrap.html')
 
-@app.route(base_url+"/analysis", methods=['POST','GET'])
+@app.route('/index')
+def index():
+    return render_template('index.html')
+
+@app.route("/admin")
+def admin():
+    return render_template('admin.html', title='Admin Console')
+
+
+# API
+api_url = '/api/v1.0'
+
+@app.route(api_url+"/analysis", methods=['POST','GET'])
 def analyses():
 
     if request.method == 'GET':
@@ -59,7 +69,7 @@ def analyses():
             abort(400)
 
 
-@app.route(base_url+"/query", methods=['POST'])
+@app.route(api_url+"/query", methods=['POST'])
 def query():
     if not request.json or not 'analysis_id' in request.json:
         abort(400)
@@ -68,15 +78,7 @@ def query():
     result = dal.run_query(query)
     return responsify(result)
 
-#ADMIN CONSOLE
-
-@app.route("/admin")
-def admin():
-    return render_template('admin.html', title='Admin Console')
-
-#ADMIN CONSOLE API
-
-@app.route(base_url+"/admin/source", methods=['POST','PUT', 'DELETE', 'GET'])
+@app.route(api_url+"/admin/source", methods=['POST','PUT', 'DELETE', 'GET'])
 def sources():
     if request.method == 'PUT':
         try:
@@ -120,7 +122,7 @@ def sources():
             abort(400)
 
 
-@app.route(base_url+"/admin/analysis", methods=['POST', 'PUT'])
+@app.route(api_url+"/admin/analysis", methods=['POST', 'PUT'])
 def admin_analysis():
     if not request.json:
         abort(400)
@@ -147,6 +149,7 @@ def admin_analysis():
         except Exception as e:
             log.warn(e)
             abort(400)
+
 
 
 

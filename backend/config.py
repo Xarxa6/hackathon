@@ -17,7 +17,6 @@ try:
     dbConfig, logConfig, bootConfig = loadConfig(config_file)
 except:
     print "[WARNING] Could not load application.json. Importing defaults..."
-    print traceback.print_exc()
     try:
         dbConfig, logConfig, bootConfig = loadConfig(defaults)
     except:
