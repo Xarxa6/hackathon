@@ -46,19 +46,25 @@ def admin():
 
 
 # API
+# TODO add parameter checking on the rest of the methods
 api_url = '/api/v1.0'
 
 @app.route(api_url+"/analysis", methods=['POST','GET'])
 def analyses():
 
-    if request.method == 'GET':
-        print request.args
-        sentence = request.args['request']
-        tags = parser.parse_request(sentence)
-        analyses = dal.query_analyses(tags)
-        return responsify(analyses)
+    if request.method == 'GET' and 'request' in request.args \
+    and request.args['request'] != '':
+        try:
+            sentence = request.args['request']
+            tags = parser.parse_request(sentence)
+            analyses = dal.query_analyses(tags)
+            return responsify(analyses)
+        except Exception as e:
+            log.error(e)
+            abort(500)
 
-    if request.method == 'POST':
+    elif request.method == 'POST' and 'request' in request.json \
+    and request.json['request'] != '':
         try:
             sentence = request.json['request']
             tags = parser.parse_request(sentence)
@@ -66,13 +72,17 @@ def analyses():
             return responsify(result)
         except Exception as e:
             log.error(e)
-            abort(400)
+            abort(500)
+
+    else:
+        return responsify({"status" : "warn","error" : "Empty query!"})
+
 
 
 @app.route(api_url+"/query", methods=['POST'])
 def query():
     if not request.json or not 'analysis_id' in request.json:
-        abort(400)
+        abort(500)
         pass
     query = request.json['analysis_id']
     result = dal.run_query(query)
@@ -86,8 +96,8 @@ def sources():
             result = dal.update_source(source['sid'],source)
             return responsify(result)
         except Exception as e:
-            log.warn(e)
-            abort(400)
+            log.error(e)
+            abort(500)
 
     if request.method == 'POST':
         try:
@@ -100,16 +110,16 @@ def sources():
             result = dal.create_source(type_of,host,port,user,password)
             return responsify(result)
         except Exception as e:
-            log.warn(e)
-            abort(400)
+            log.error(e)
+            abort(500)
 
     if request.method == 'GET':
         try:
             result = dal.get_sources()
             return responsify(result)
         except Exception as e:
-            log.warn(e)
-            abort(400)
+            log.error(e)
+            abort(500)
 
     if request.method == "DELETE":
         try:
@@ -118,14 +128,14 @@ def sources():
             result = dal.delete_source(uid)
             return responsify(result)
         except Exception as e:
-            log.warn(e)
-            abort(400)
+            log.error(e)
+            abort(500)
 
 
 @app.route(api_url+"/admin/analysis", methods=['POST', 'PUT'])
 def admin_analysis():
     if not request.json:
-        abort(400)
+        abort(500)
 
     if request.method == 'POST':
         try:
@@ -138,7 +148,7 @@ def admin_analysis():
             return responsify(result)
         except Exception as e:
             log.warn(e)
-            abort(400)
+            abort(500)
 
     if request.method == 'PUT':
         try:
@@ -148,7 +158,7 @@ def admin_analysis():
             return responsify(result)
         except Exception as e:
             log.warn(e)
-            abort(400)
+            abort(500)
 
 
 

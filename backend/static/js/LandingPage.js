@@ -4,23 +4,6 @@
 
 var landingPage = (function () {
 
-    function undisplayError(){
-        $('#noti-bar').css('background','#FFFFFF')
-        $('#placeholder_center').html("")
-        $('#placeholder_right').html("<a id=\"placeholder_right\" class=\"navmenu-brand\" href=\"#\">Unnamed project</a>")
-    }
-
-    function displayError(textStatus,errorThrown,xr){
-        var statuscode = xr.status
-        var message = xr.responseJSON['error']
-        $('#noti-bar').css('background','#F2DEDE')
-        $('#placeholder_center').html(statuscode+" <b>"+errorThrown+"  </b>"+message)
-        $('#placeholder_right').html("<a class=\"navmenu-brand close\">x</a>")
-        $('#placeholder_right .close').click(function(){
-            undisplayError()})
-    }
-
-
     function drawTable (collection){
 
         var textVal = '<table class="table"><tr><th>Analysis ID</th><th>Tags</th></th><th>Payload</th><th>Status</th></tr>';
@@ -53,11 +36,11 @@ var landingPage = (function () {
             data        :  { request: queryString },
             type        :  "GET",
             success : function (collection) {
-                undisplayError()
+                main.undisplayError()
                 drawTable(collection);
              },
              error : function(jqxhr,status,error){
-                displayError(status,error,jqxhr)
+                main.displayError(status,error,jqxhr)
             }
         })
      };
@@ -74,12 +57,12 @@ var landingPage = (function () {
             data        :  JSON.stringify({request: queryString }),
             type        :  "POST",
             success : function(responseText){
-                    undisplayError()
+                    main.undisplayError()
                     //Search again and display queued analysis
                     submitQuery()
                 },
             error : function(jqxhr,status,error){
-                displayError(status,error,jqxhr)
+                main.displayError(status,error,jqxhr)
             }
             });
     };
