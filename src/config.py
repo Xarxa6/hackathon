@@ -1,8 +1,10 @@
 import json
 import traceback
+import os
 
-config_file = './config/application.json'
-defaults = './config/reference.json'
+script_dir = os.path.dirname(__file__)
+config_file = os.path.join(script_dir, './config/application.json')
+defaults = os.path.join(script_dir, './config/reference.json')
 
 def loadConfig(f):
     print "[INFO] Loading configuration from " + f + "..."

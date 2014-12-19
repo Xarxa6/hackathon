@@ -3,14 +3,28 @@ Xarxa6 Hackathon
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Xarxa6/hackathon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Setup virtual environment
+Project Setup
 ------------------------
-Open project root folder and do
-- `cd ./backend`
-- `virtualenv flask`
+Make sure you have Python 2.7.x installed on your local computer. Check version issuing `python --version`
+
+Clone repo
+`git clone git@github.com:Xarxa6/hackathon.git`
+
+If you don't have your local environment setup with `pip` and `virtualenv`:
+- Follow instructions on how to install pip for your OS here: https://pip.pypa.io/en/latest/installing.html
+- Install `virtualenv` with `pip install virtualenv`
+
+Open project folder and do
+- `virtualenv env`
 
 Then use the `pip` in the virtual environment to install dependencies:
-- `flask/bin/pip install nltk`
-- `flask/bin/pip install psycopg2`
-- `flask/bin/pip install flask`
-- `flask/bin/pip install numpy`
+- `./env/bin/pip install nltk`
+- `./env/bin/pip install psycopg2`
+- `./env/bin/pip install flask`
+- `./env/bin/pip install numpy`
+
+If you want to boot the api in your local computer, add exec permissions to boot.sh file:
+- `chmod +x sys/boot.sh`
+
+Boot api issuing from root folder:
+`./sys/boot.sh`

@@ -1,4 +1,3 @@
-#!./flask/bin/python
 import traceback
 
 if __name__ == "__main__":
