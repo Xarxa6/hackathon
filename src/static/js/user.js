@@ -2,7 +2,7 @@
  * Created by eric on 12/10/14.
  */
 
-var landingPage = (function () {
+var user = (function () {
 
     function drawTable (collection){
 
@@ -40,7 +40,7 @@ var landingPage = (function () {
                 drawTable(collection);
              },
              error : function(jqxhr,status,error){
-                main.displayError(status,error,jqxhr)
+                main.displayError(jqxhr)
             }
         })
      };
@@ -62,7 +62,7 @@ var landingPage = (function () {
                     submitQuery()
                 },
             error : function(jqxhr,status,error){
-                main.displayError(status,error,jqxhr)
+                main.displayError(jqxhr)
             }
             });
     };

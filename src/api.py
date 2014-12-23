@@ -5,7 +5,8 @@ import dal
 
 app = Flask(__name__)
 
-#Helper -> follows utils.protocol
+#Helper -> Receives output that follows utils.protocol and
+#transforms it into a HTTP response
 def responsify(output):
     status = output['status']
     if status == 'error':
@@ -31,6 +32,9 @@ def missing(error):
 def internal_server_error(error):
     return make_response(jsonify({'error': 'Oops! Something went wrong!'}), 500)
 
+def not_implemented():
+    return make_response(jsonify({'error':'Coming soon!'}), 501)
+
 # Templates
 @app.route('/')
 def wrap():
@@ -40,13 +44,26 @@ def wrap():
 def index():
     return render_template('index.html')
 
-@app.route("/admin")
-def admin():
-    return render_template('admin.html', title='Admin Console')
+@app.route('/saved')
+def saved():
+    # return render_template('saved.html')
+    return not_implemented()
+
+@app.route('/account')
+def acc():
+    # return render_template('account.html')
+    return not_implemented()
+
+@app.route("/console")
+def console():
+    return render_template('console.html', title='Analysis Console')
+
+@app.route("/config")
+def config():
+    return render_template('config.html', title='Sources configuration')
 
 
-# API
-# TODO add parameter checking on the rest of the methods
+#User Client API
 api_url = '/api/v1.0'
 
 @app.route(api_url+"/analysis", methods=['POST','GET'])
@@ -88,6 +105,8 @@ def query():
     result = dal.run_query(query)
     return responsify(result)
 
+
+#Admin Client API
 @app.route(api_url+"/admin/source", methods=['POST','PUT', 'DELETE', 'GET'])
 def sources():
     if request.method == 'PUT':
