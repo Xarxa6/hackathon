@@ -16,11 +16,9 @@ If you don't have your local environment setup with `pip` and `virtualenv`:
 
 Open project root folder and do `virtualenv env`
 
-Then use the `pip` in the virtual environment to install dependencies:
-- `./env/bin/pip install nltk`
-- `./env/bin/pip install psycopg2`
-- `./env/bin/pip install flask`
-- `./env/bin/pip install numpy`
+Then use the `pip` in the virtual environment to install required dependencies:
+- `source env/bin/activate`
+- `pip install -r requirements.txt`
 
 If you want to boot the api in your local computer, add exec permissions to boot.sh file using `chmod +x sys/boot.sh`.
 

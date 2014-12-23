@@ -1,0 +1,4 @@
+NLTK==3.0.0b2
+psycopg2==2.5.4
+flask==0.10
+numpy==1.9.1
