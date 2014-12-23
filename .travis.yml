@@ -1,7 +1,9 @@
 language: python
 python:
   - "2.7"
+before_install:
+    - chmod +x sys/test.sh
 # command to install dependencies
 install: "pip install -r requirements.txt"
 # command to run tests
-script: PYTHONPATH=./src/ py.test --verbose -c pytest.ini --capture=sys
+script: sys/test.sh

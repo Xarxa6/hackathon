@@ -2,13 +2,15 @@
 
 echo "Checking environment..."
 
-result=$PWD
-ENV_FOLDER="$result/env"
+CURRENT=$PWD
+ENV_FOLDER="$CURRENT/env"
+PY="$ENV_FOLDER/bin/python"
 
 if [ -d "$ENV_FOLDER" ]; then
     echo "Environment folder found!"
     echo "Executing init.py file..."
-    exec "$ENV_FOLDER/bin/python" src/init.py
+    exec "$PY" -m nltk.downloader all
+    exec "$PY" src/init.py
 else
     echo "env folder ~> $ENV_FOLDER does not exist! In order to boot the api you need to set up virtual environment first."
 fi

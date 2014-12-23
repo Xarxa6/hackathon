@@ -7,7 +7,6 @@ import re
 # nltk.download('stopwords')
 # nltk.download('maxent_treebank_pos_tagger')
 
-
 def parse_request(sentence):
 	tokens = nltk.word_tokenize(sentence)
 	email_list = []
