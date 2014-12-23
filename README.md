@@ -18,6 +18,9 @@ Then use the `pip` in the virtual environment to install required dependencies:
 - `source env/bin/activate`
 - `pip install -r requirements.txt`
 
+Then install the nltk packages:
+- `python -m nltk.downloader all`
+
 If you want to boot the api in your local computer, add exec permissions to boot.sh file using `chmod +x sys/boot.sh`. Also, make sure you have a local postgres db booted up. For mac users there's a utility app that will make your life easier: http://postgresapp.com/ See `src/config/reference.json` to know what username and password to create.
 
 Then boot api issuing from root folder `./sys/boot.sh`.
