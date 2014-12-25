@@ -27,6 +27,7 @@ Once you have installed postgres, create the tables using the commands on the sq
 - `CREATE USER api with PASSWORD '';`
 - `GRANT ALL ON analyses TO api;`
 - `GRANT ALL ON data_sources TO api;`
+- `GRANT USAGE, SELECT ON SEQUENCE analyses_analysis_id_seq TO api;`
 
 Then boot api issuing from root folder `./sys/boot.sh`.
 

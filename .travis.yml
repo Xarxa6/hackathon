@@ -16,5 +16,13 @@ notifications:
 env:
   global:
     secure: LzDEldhNMBkAoh6hOt6eB/87Hi5NXE3rcKk854w3GmkOLgebblhO4b/KHQ459UVnbNnvvnVJyvo+C0qyeN6dOxIg2mcuBih1T5mR499pYSi/CU524oVl3UQpckBFxr8d/00gBCR+p3UbLXiUqQDCrBddglrzEKE0F62fZcHyKB4=
+
 before_install:
-  - openssl aes-256-cbc -k "$super_secret_password" -in super_secret.txt.enc -out super_secret.txt -d
+  - pwd
+  - openssl aes-256-cbc -k "$super_secret_password" -in ./sys/super_secret.txt.enc -out ./sys/super_secret.txt -d
+
+after_success:
+  - chmod 600 ./sys/super_secret.txt # this key should have push access
+  - ssh-add ./sys/super_secret.txt
+  - git remote add deploy git@xarxa6.unstable.build:/opt/git/xarxa6.git
+  - git push deploy
