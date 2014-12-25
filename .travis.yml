@@ -1,18 +1,20 @@
 language: python
 python:
-  - "2.7"
+- '2.7'
 before_install:
-    - chmod +x sys/test.sh
-# command to install dependencies
-install: "pip install -r requirements.txt"
-# command to run tests
+- chmod +x sys/test.sh
+install: pip install -r requirements.txt
 script: sys/test.sh
-
 notifications:
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/b4f3cecdc1bc0e6b6feb
-      - https://webhooks.gitter.im/e/86d334546d35356f1c30
-    on_success: always  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: false     # default: false
+    - https://webhooks.gitter.im/e/b4f3cecdc1bc0e6b6feb
+    - https://webhooks.gitter.im/e/86d334546d35356f1c30
+    on_success: always
+    on_failure: always
+    on_start: false
+env:
+  global:
+    secure: LzDEldhNMBkAoh6hOt6eB/87Hi5NXE3rcKk854w3GmkOLgebblhO4b/KHQ459UVnbNnvvnVJyvo+C0qyeN6dOxIg2mcuBih1T5mR499pYSi/CU524oVl3UQpckBFxr8d/00gBCR+p3UbLXiUqQDCrBddglrzEKE0F62fZcHyKB4=
+before_install:
+  - openssl aes-256-cbc -k "$super_secret_password" -in super_secret.txt.enc -out super_secret.txt -d

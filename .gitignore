@@ -3,7 +3,7 @@ flask/
 application.json
 *.sublime-project
 *.sublime-workspace
-
+super_secret.txt
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
