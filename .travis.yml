@@ -17,6 +17,9 @@ env:
   global:
     secure: LzDEldhNMBkAoh6hOt6eB/87Hi5NXE3rcKk854w3GmkOLgebblhO4b/KHQ459UVnbNnvvnVJyvo+C0qyeN6dOxIg2mcuBih1T5mR499pYSi/CU524oVl3UQpckBFxr8d/00gBCR+p3UbLXiUqQDCrBddglrzEKE0F62fZcHyKB4=
 
+before_script:
+  - echo -e "Host xarxa6.unstable.build\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
 before_install:
   - pwd
   - openssl aes-256-cbc -k "$super_secret_password" -in ./sys/super_secret.txt.enc -out ./sys/super_secret.txt -d
