@@ -19,7 +19,7 @@ var user = (function () {
         }
 
         textVal += "</table>";
-        textVal += '<button id="displeased" onclick="landingPage.submitDispleasure()" class="btn btn-mini">';
+        textVal += '<button id="displeased" onclick="user.submitDispleasure()" class="btn btn-mini">';
         textVal += "Not What I'm looking for";
         textVal += "</button>";
 
