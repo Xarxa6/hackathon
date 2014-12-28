@@ -26,6 +26,7 @@ before_install:
 
 after_success:
   - chmod 600 ./sys/super_secret.txt # this key should have push access
+  - eval `ssh-agent -s` #in case ssh-add trhows 'Could not open a connection to your authentication agent'
   - ssh-add ./sys/super_secret.txt
   - git remote add deploy git@xarxa6.unstable.build:/opt/git/xarxa6.git
   - git push deploy

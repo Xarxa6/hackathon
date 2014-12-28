@@ -45,6 +45,10 @@ Finally boot the docker image as a daemon, map port 80 and make sure that if the
 `docker run --restart=always -d -p 80:80 xarxa6/app python /src/init.py`
 
 
+Project Staging server
+------------
+Every time we commit and push new code to the master branch, if it passes all the tests on the CI pipeline, it will be deployed here <a href="http://xarxa6.unstable.build">http://xarxa6.unstable.build</a>
+
 Project Structure
 ----------------------
 
