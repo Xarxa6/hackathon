@@ -21,7 +21,7 @@ Then use the `pip` in the virtual environment to install required dependencies:
 Then install the nltk packages:
 - `python -m nltk.downloader all`
 
-If you want to boot the api in your local computer, add exec permissions to boot.sh file using `chmod +x sys/boot.sh`. Also, make sure you have a local postgres db booted up. For mac users there's a utility app that will make your life easier: http://postgresapp.com/
+If you want to boot the api in your local computer, add exec permissions to [boot.sh](sys/boot.sh) file using `chmod +x sys/boot.sh`. Also, make sure you have a local postgres db booted up. For mac users there's a utility app that will make your life easier: http://postgresapp.com/
 
 Once you have installed postgres, create the tables using the commands on the sql file `schema.sql` and then create the user and give it permissions on the db and tables:
 - `CREATE USER api with PASSWORD '';`

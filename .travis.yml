@@ -18,16 +18,14 @@ env:
     secure: LzDEldhNMBkAoh6hOt6eB/87Hi5NXE3rcKk854w3GmkOLgebblhO4b/KHQ459UVnbNnvvnVJyvo+C0qyeN6dOxIg2mcuBih1T5mR499pYSi/CU524oVl3UQpckBFxr8d/00gBCR+p3UbLXiUqQDCrBddglrzEKE0F62fZcHyKB4=
 
 before_script:
-  - echo -e "Host xarxa6.unstable.build\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - echo -e "Host xarxa6.unstable.build\n\tStrictHostKeyChecking no\n\tIdentityFile /home/travis/build/Xarxa6/hackathon/sys/deploy_key\n\tIdentitiesOnly yes\n\tUser git\n" >> ~/.ssh/config
 
 before_install:
   - pwd
-  - openssl aes-256-cbc -k "$super_secret_password" -in ./sys/super_secret.txt.enc -out ./sys/super_secret.txt -d
+  - openssl aes-256-cbc -k "$super_secret_password" -in ./sys/deploy_key.enc -out ./sys/deploy_key -d
 
 after_success:
-  - chmod 600 ./sys/super_secret.txt # this key should have push access
-  - eval `ssh-agent -s` #in case ssh-add trhows 'Could not open a connection to your authentication agent'
-  - ssh-add ./sys/super_secret.txt
+  - chmod 600 ./sys/deploy_key # this key should have push access
   - git remote add deploy git@xarxa6.unstable.build:/opt/git/xarxa6.git
   - git push deploy
 
