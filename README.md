@@ -31,9 +31,19 @@ Once you have installed postgres, create the tables using the commands on the sq
 
 Then boot api issuing from root folder `./sys/boot.sh`.
 
-If you want to run the test suite, install pytest as a ***global*** pip dependency with `pip install pytest`. Then do go to project root folder and do `sys/test.sh`
+If you want to run the test suite, install pytest as a ***global*** pip dependency with `pip install pytest`. Then do go to project root folder and do `./sys/test.sh`
 
 If you want the api to run against a remote postgres db, create an `application.json` with the same contents of `reference.json` and override values.
+
+Project Deploy
+--------
+<a href="https://docs.docker.com/installation/">Install Docker</a> in the server, then use [Dockerfile](Dockerfile) to build a docker image ~> `docker build -t xarxa6/app .`
+
+Check that the image is in the local repo issuing `docker images`. You should see xarxa6/app in the list.
+
+Finally boot the docker image as a daemon, map port 80 and make sure that if the app crashes it will be automatically restarted by docker:
+`docker run --restart=always -d -p 80:80 xarxa6/app python /src/init.py`
+
 
 Project Structure
 ----------------------
@@ -62,7 +72,7 @@ Project Structure
         |_ test.sh [7]
         |_ ...
 
-[1] - This is the environment folder. Previously called flask, env is preferred as it describes better what this folder is about. Flask has nothing to do, apart that is one dependency installed in the virtual environment, but there are many others. This folder is ignored by git, so it needs to be set up locally as explained in README.md
+[1] - This is the environment folder. Previously called flask, env is preferred as it describes better what this folder is about. Flask has nothing to do, apart that is one dependency installed in the virtual environment, but there are many others. This folder is ignored by git, so it needs to be set up locally as explained in [README.md](README.md)
 <br>[2] - src folder, where the source code of this project lives. Before it was called backend
 <br>[3] - init script that will instantiate the different modules and will boot up the api to the port and host defined in the config module.
 <br>[4] - tests folder. This folder contains the tests that the test suite will run. All files must start with name `pytest_` in order for pytest to recognise them. Each file must declare a `Pytest_` class and each individual test case function must start with name `pytest_`. This was custom defined in [8] so that we only run our test suite.
