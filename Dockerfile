@@ -1,6 +1,7 @@
 FROM ubuntu:14.04
+#FROM xarxa6/api:template
 
-EXPOSE 80
+EXPOSE 80 5000
 
 RUN apt-get update -y
 RUN apt-get -y install python python-pip build-essential libpq-dev python-dev

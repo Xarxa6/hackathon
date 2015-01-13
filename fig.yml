@@ -1,0 +1,16 @@
+api:
+    build: .
+    command: python src/init.py dev
+    links:
+        - db
+    ports:
+        - "80:5000"
+    volumes:
+        - ./src:/src
+
+db:
+    environment:
+        - POSTGRES_PASSWORD=1234
+    build: ./sys/
+    ports:
+        - "5432:5432"
