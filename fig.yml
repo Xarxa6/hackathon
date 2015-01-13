@@ -11,6 +11,6 @@ api:
 db:
     environment:
         - POSTGRES_PASSWORD=1234
-    build: ./sys/
+    build: ./schema/
     ports:
         - "5432:5432"

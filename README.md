@@ -1,7 +1,14 @@
 Xarxa6 Hackathon  [![Build Status](https://travis-ci.org/Xarxa6/hackathon.svg?branch=master)](https://travis-ci.org/Xarxa6/hackathon) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/Xarxa6/hackathon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 =================
-
 Project Setup
+------------
+This project comes with a <a href="http://www.fig.sh/index.html">fig</a> configuration file for super-fast development. Install docker and fig in your computer and then boot up the api docker container in debug mode (flask reloads code if source changes) with a postgres docker container linked to it and pre-configured with the schema defined in [schema.sql](schema/schema.sql) by doing in the root folder:
+```
+fig up
+```
+Note: For more information about how the containers are orchestrated take a look at [fig.yml](fig.yml).
+
+Manual Project Setup
 ------------------------
 Make sure you have Python 2.7.x installed on your local computer. Check version issuing `python --version`
 

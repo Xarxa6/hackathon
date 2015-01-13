@@ -9,7 +9,7 @@ if __name__ == "__main__":
         import api
         log.info("Xarxa6 API is booting ...")
         if len(sys.argv) > 1 and sys.argv[1].upper() == 'DEV':
-            api.app.run(host = config.bootConfig['host'], port = config.bootConfig['port'], debug=True)
+            api.app.run(host = config.bootConfig['host'], port = config.bootConfig['port'], debug=True,use_evalex=False)
         else:
             api.app.run(host = config.bootConfig['host'], port = config.bootConfig['port'])
     except:
